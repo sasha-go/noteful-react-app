@@ -40,10 +40,10 @@ class App extends Component {
             path="/folder/:folderId"
             render={(props) => <NoteListMain notes={STORE.notes} {...props} />}
           />
-          <Route
+          {/* <Route
             path="/notes/:noteId"
             render={(props) => <NoteCardInfo notes={STORE.notes} {...props} />}
-          />
+          /> */}
           <Route
             exact path="/"
             render={(props) => <NoteListMain notes={STORE.notes} {...props} />}

@@ -9,7 +9,7 @@ class NotePageMain extends Component {
     
     return (
       <>
-        <div className="Main">
+        <div className="NotePageMain">
         <NoteCardInfo modified={this.props.modified} id={this.props.id } name={this.props.name} />
   
         <p>{this.props.content}</p>

@@ -1,3 +1,13 @@
 li {
 	list-style: none;
+	text-align: left;
 }
+
+.NoteListSidebar {
+	float: left;
+	height: 300vh;
+	padding-right: 120px;
+	border-right: solid black 1px;
+	background-color: lightsteelblue;
+}
+

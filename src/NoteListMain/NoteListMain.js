@@ -33,7 +33,7 @@ class NoteListMain extends Component {
         <h2>Notes</h2>
           <ul>
             {notes.map((note) => {
-              return (<div key={note.id} className="note-list-sidebar">
+              return (<div key={note.id} className="note-list">
 								{/* <Link to={`notes/${note.id}`}>{note.name}</Link>
                 <NoteCardInfo notes={this.props.notes} {...this.props} /> */}
                 <NoteCardInfo modified={note.modified} key={note.id} id={note.id } name={note.name} content={note.content} />
@@ -43,7 +43,7 @@ class NoteListMain extends Component {
                 ;
             })}
           </ul>
-          <button>New Note</button>
+          <button className="delete-btn">New Note</button>
       </div>
     )
   }
