@@ -27,14 +27,13 @@ class NoteCardInfo extends Component {
 
     return (
       <>
-       <li className="NoteCardInfo">
-        <Link to={`/notes/${this.props.id}`}>{this.props.name}</Link>
+       {/* <li className="NoteCardInfo"> */}
         <div>
+        <Link to={`/notes/${this.props.id}`}>{this.props.name}</Link>
           <p>Last modified: {this.props.modified}</p>
-
           <button>Delete Note</button>
         </div>
-      </li>
+      {/* </li> */}
       </>
     )
   }

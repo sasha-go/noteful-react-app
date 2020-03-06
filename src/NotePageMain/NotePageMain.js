@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import './NotePageMain.css';
+import NoteCardInfo from '../NoteCardInfo/NoteCardInfo';
 
 
 class NotePageMain extends Component {
-
 
   render() {
     
     return (
       <>
-       
+        <div className="Main">
+        <NoteCardInfo modified={this.props.modified} id={this.props.id } name={this.props.name} />
+  
+        <p>{this.props.content}</p>
+        </div>
       </>
     )
   }
 }
 
 export default NotePageMain;
+
+
