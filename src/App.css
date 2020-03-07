@@ -29,9 +29,6 @@ li {
   text-align: left;
 }
 
-/* NavLink:active {
-  background-color: lawngreen;
-} */
 .selected-class {
 	background-color: aquamarine;
 }

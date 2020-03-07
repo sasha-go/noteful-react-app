@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './NoteListMain.css';
 import NoteCardInfo from '../NoteCardInfo/NoteCardInfo';
+import NoteContext from '../NoteContext';
 
 
 class NoteListMain extends Component {
@@ -9,7 +10,9 @@ class NoteListMain extends Component {
     this.state = {
       notes: this.props.notes,
 		}
-	}
+  }
+  
+  static contextType = NoteContext;
 		
 		componentDidUpdate(prevProps, prevState) {
 			if (prevProps !== this.props) {
@@ -34,11 +37,9 @@ class NoteListMain extends Component {
           <ul>
             {notes.map((note) => {
               return (<div key={note.id} className="note-list">
-								{/* <Link to={`notes/${note.id}`}>{note.name}</Link>
-                <NoteCardInfo notes={this.props.notes} {...this.props} /> */}
+					
                 <NoteCardInfo modified={note.modified} key={note.id} id={note.id } name={note.name} content={note.content} />
-								{/* <p>Date Modified on:  {note.modified}</p>
-								<button>Delete Note</button> */}
+					
                 </div>)
                 ;
             })}
@@ -47,6 +48,10 @@ class NoteListMain extends Component {
       </div>
     )
   }
+}
+
+NoteListMain.defaultProps = {
+  notes: []
 }
 
 export default NoteListMain;
