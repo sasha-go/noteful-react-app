@@ -3,17 +3,20 @@ import { Link } from 'react-router-dom';
 import './NoteCardInfo.css';
 import NoteContext from '../NoteContext';
 import '../App.css'
+import NotePageSidebar from '../NotePageSidebar/NotePageSidebar';
 
 class NoteCardInfo extends Component {
   static contextType = NoteContext; 
 
+  
   render() {
 
     return (
       <>
-        <Link to={`/notes/${this.context.id}`} className="note-card-title">{this.context.name}</Link>
+        {/* Why isn't context working here? */}
+        <Link to={`/notes/${this.props.id}`} className="note-card-title">{this.props.name}</Link>
         <div className="NoteCardInfo">
-          <p>Last modified: {this.context.modified}</p>
+          <p>Last modified: {this.props.modified}</p>
           <button>Delete Note</button>
         </div>
       </>

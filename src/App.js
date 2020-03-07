@@ -51,7 +51,7 @@ class App extends Component {
           </div>
           
 
-          {/* NoteListMain / NoteCardInfo  */}
+          {/* Main */}
           <div>
             <Route
               path="/folder/:folderId"
@@ -67,7 +67,6 @@ class App extends Component {
             />
           </div>
         </NoteContext.Provider>
-       
       </div>
     );
   }
