@@ -10,9 +10,9 @@ class NotePageMain extends Component {
     return (
       <>
         <div className="NotePageMain">
-        <NoteCardInfo modified={this.props.modified} id={this.props.id } name={this.props.name} />
+        <NoteCardInfo modified={this.props.modified} id={this.props.id} name={this.props.name} />
   
-        <p>{this.props.content}</p>
+        <p className="note-content">{this.props.content}</p>
         </div>
       </>
     )

@@ -10,7 +10,7 @@ import NoteListMain from './NoteListMain/NoteListMain';
 import NoteListSidebar from './NoteListSidebar/NoteListSidebar';
 import NoteCardInfo from './NoteCardInfo/NoteCardInfo';
 import NotePageMain from './NotePageMain/NotePageMain';
-import NotePageSidebar from './NoteListSidebar/NoteListSidebar';
+import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
 
 class App extends Component {
   state = STORE;
@@ -23,46 +23,12 @@ class App extends Component {
         </header>
 
         {/* Sidebar */}
-        <div>
+        <div className="folder-sidebar">
           <Route 
             path="/folder/:folderId"
             render={(props) => <NoteListSidebar folders={STORE.folders} {...props} />}
           />
-          <Route 
-            exact path="/"
-            render={(props) => <NoteListSidebar folders={STORE.folders} {...props} />} 
-          />
-        </div>
-
-        {/* NoteListMain / NoteCardInfo  */}
-        <div>
           <Route
-            path="/folder/:folderId"
-            render={(props) => <NoteListMain notes={STORE.notes} {...props} />}
-          />
-          {/* <Route
-            path="/notes/:noteId"
-            render={(props) => <NoteCardInfo notes={STORE.notes} {...props} />}
-          /> */}
-          <Route
-            exact path="/"
-            render={(props) => <NoteListMain notes={STORE.notes} {...props} />}
-          />
-        </div>
-
-        {/* NotePageMain  */}
-        <div>
-        {/* <Route 
-            path="/notes/:noteId"
-            render={(props) => {
-              const selectedFolder = this.state.folders.find(folder => folder.id === p)
-              return (
-                <NotePageSidebar folders={STORE.folders} {...props} />
-              )
-            }
-          />   */}
-        <Route
-            exact
             path='/notes/:noteId'
             render={(props) => {
               const selectedFolderId = this.state.notes.find(
@@ -72,13 +38,27 @@ class App extends Component {
               const selectedFolder = this.state.folders.find(
                 folder => folder.id === selectedFolderId
               )
+
               return (
-                <NotePageSidebar {...selectedFolder} {...props} />
+                <NotePageSidebar selectedFolder={selectedFolder} {...props} />
               )
             }}
           />
+          <Route 
+            exact path="/"
+            render={(props) => <NoteListSidebar folders={STORE.folders} {...props} />} 
+          />
 
-        <Route
+        </div>
+        
+
+        {/* NoteListMain / NoteCardInfo  */}
+        <div>
+          <Route
+            path="/folder/:folderId"
+            render={(props) => <NoteListMain notes={STORE.notes} {...props} />}
+          />
+          <Route
             path='/notes/:noteId'
             render={(props) => {
               const selectedNote = this.state.notes.find(
@@ -89,9 +69,18 @@ class App extends Component {
               )
             }}
           />  
-      
-        </div>
+           <Route
+            exact path="/"
+            render={(props) => <NoteListMain notes={STORE.notes} {...props} />}
+          />
+          {/* Deleted below - cause extra note info to appear below header */}
+          {/* <Route
+            path="/notes/:noteId"
+            render={(props) => <NoteCardInfo notes={STORE.notes} {...props} />}
+          /> */}
          
+        </div>
+
       </div>
     );
   }

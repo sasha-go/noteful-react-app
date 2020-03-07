@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import './NoteListSidebar.css'
 
 
 class NoteListSidebar extends Component {
@@ -12,22 +11,20 @@ class NoteListSidebar extends Component {
 
     return (
       <>
-        <div className='NoteListSidebar'>
-					<h2>Folders</h2>
-          <ul>
-            {folders.map((folder) => {
-              return (
-              <li 
-                key={folder.id} 
-                className={`${selectedId === folder.id ? "selected-class" : ""}`}>
-                <NavLink 
-                  to={`/folder/${folder.id}`}>{folder.name}
-                </NavLink>
-              </li>);
-            })}
-          </ul>
-					<button>New Folder</button>
-        </div>
+        <h2>Folders</h2>
+        <ul>
+          {folders.map((folder) => {
+            return (
+            <li 
+              key={folder.id} 
+              className={`${selectedId === folder.id ? "selected-class" : ""}`}>
+              <NavLink 
+                to={`/folder/${folder.id}`}>{folder.name}
+              </NavLink>
+            </li>);
+          })}
+        </ul>
+        <button>New Folder</button>
       </>
     )
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './NotePageSidebar.css';
-
+import { Link } from 'react-router-dom';
+import '../App.css';
 
 class NotePageSidebar extends Component {
 
@@ -9,8 +9,8 @@ class NotePageSidebar extends Component {
     return (
       <>
        <div className="Sidebar">
-        <Link to='/'>Go Back</Link>
-        <h2>Current Folder: {this.props.selectedFolder.name}</h2>
+        <Link to='/' className="back-btn"><button>Go Back</button></Link>
+        <h2>{this.props.selectedFolder.name}</h2>
       </div>
       </>
     )
