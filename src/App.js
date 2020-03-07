@@ -3,7 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import './App.css';
 
 // Data and config
-import STORE from './STORE';
+// import STORE from './STORE';
 import config from './config';
 
 // Context
@@ -17,8 +17,11 @@ import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
 
 
 class App extends Component {
-  state = STORE;
-
+  // state = STORE;
+  state = {
+    notes: [],
+    folders: []
+  };
  
 
 
