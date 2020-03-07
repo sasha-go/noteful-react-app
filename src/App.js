@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
 
-// Data
+// Data and config
 import STORE from './STORE';
+import config from './config';
 
 // Context
 import NoteContext from './NoteContext';
@@ -17,6 +18,43 @@ import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
 
 class App extends Component {
   state = STORE;
+
+ 
+
+
+  componentDidMount() {
+    Promise.all([
+      fetch(`${config.API_ENDPOINT}/notes`),
+      fetch(`${config.API_ENDPOINT}/folders`)
+      ])
+      .then(([notesRes, foldersRes]) => {
+          if (!notesRes.ok)
+              return notesRes.json().then(e => Promise.reject(e));
+          if (!foldersRes.ok)
+              return foldersRes.json().then(e => Promise.reject(e));
+
+          return Promise.all([notesRes.json(), foldersRes.json()]);
+      })
+      .then(([notes, folders]) => {
+          this.setState({notes, folders});
+      })
+      .catch(error => {
+          console.error({error});
+      });
+  }
+    // fetch(config.API_ENDPOINT)
+    //   .then(response => {
+    //     if(!response.ok) {
+    //       return response.json().then(e => Promise.reject(e))
+    //     }
+    //     return response;
+    //   })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     console.log(data)
+    //   })
+
+
 
   render() {
 
