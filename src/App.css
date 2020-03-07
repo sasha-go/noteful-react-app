@@ -29,10 +29,12 @@ li {
   text-align: left;
 }
 
-NavLink:active {
+/* NavLink:active {
   background-color: lawngreen;
+} */
+.selected-class {
+	background-color: aquamarine;
 }
-
 .folder-sidebar {
 	float: left;
 	height: 500vh;
