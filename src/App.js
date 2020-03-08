@@ -23,20 +23,19 @@ class App extends Component {
     folders: []
   };
  
-
-
+  // Fetching api for folder and note data
   componentDidMount() {
     Promise.all([
       fetch(`${config.API_ENDPOINT}/notes`),
       fetch(`${config.API_ENDPOINT}/folders`)
       ])
-      .then(([notesRes, foldersRes]) => {
-          if (!notesRes.ok)
-              return notesRes.json().then(e => Promise.reject(e));
-          if (!foldersRes.ok)
-              return foldersRes.json().then(e => Promise.reject(e));
+      .then(([notesResponse, foldersResponse]) => {
+          if (!notesResponse.ok)
+              return notesResponse.json().then(e => Promise.reject(e));
+          if (!foldersResponse.ok)
+              return foldersResponse.json().then(e => Promise.reject(e));
 
-          return Promise.all([notesRes.json(), foldersRes.json()]);
+          return Promise.all([notesResponse.json(), foldersResponse.json()]);
       })
       .then(([notes, folders]) => {
           this.setState({notes, folders});
@@ -57,14 +56,18 @@ class App extends Component {
     //     console.log(data)
     //   })
 
-
+    handleDeleteNote = (noteId) => {
+      this.setState({
+        notes: this.state.notes.filter(note => note.noteId !== noteId)
+      })
+    }
 
   render() {
 
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
-      // deleteNote:
+      deleteNote: this.handleDeleteNote
     }
 
 

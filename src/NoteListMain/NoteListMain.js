@@ -54,7 +54,7 @@ class NoteListMain extends Component {
                 ;
             })}
           </ul>
-          <button className="delete-btn">New Note</button>
+          <button>New Note</button>
       </div>
     )
   }

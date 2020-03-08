@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './NoteCardInfo.css';
 import NoteContext from '../NoteContext';
+import config from '../config';
+import './NoteCardInfo.css';
 import '../App.css'
+import { reject } from 'q';
 
 //https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date 
 function formatDate(date) {
@@ -21,11 +23,32 @@ function formatDate(date) {
   return monthNames[monthIndex] + ' ' + day + ', ' + year;
 }
 
-
 class NoteCardInfo extends Component {
   
   static contextType = NoteContext; 
 
+  handleClickDelete = (event) => {
+    event.preventDefault();
+    const noteId = this.props.id;
+    
+    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      },
+    })
+      .then(response => {
+        if (!response.ok) 
+          return response.json().then(event => Promise.reject(event))
+          return response.json();
+      }) 
+      .then(() => {
+        this.context.deleteNote(noteId)
+      })
+      .catch(error => {
+      console.log({error})
+      })
+  }
 
   render() {
 
@@ -36,8 +59,8 @@ class NoteCardInfo extends Component {
         {/* Why isn't context working here? */}
         <Link to={`/notes/${this.props.id}`} className="note-card-title">{this.props.name}</Link>
         <div className="NoteCardInfo">
-          <p>Last modified: {modified}</p>
-          <button>Delete Note</button>
+          <p>Modified on {modified}</p>
+          <button onClick={this.handleClickDelete}>Delete Note</button>
         </div>
       </>
     )
