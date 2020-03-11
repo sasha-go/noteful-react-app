@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import NoteContext from '../NoteContext';
 import config from '../config';
 import './NoteCardInfo.css';
-import '../App.css'
-import { reject } from 'q';
+import '../App.css';
 
 //https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date 
 function formatDate(date) {
