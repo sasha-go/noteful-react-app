@@ -14,6 +14,8 @@ import NoteListMain from './NoteListMain/NoteListMain';
 import NoteListSidebar from './NoteListSidebar/NoteListSidebar';
 import NotePageMain from './NotePageMain/NotePageMain';
 import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
+import NewFolder from './NewFolder/NewFolder';
+import NewNote from './NewNote/NewNote';
 
 
 class App extends Component {
@@ -97,9 +99,17 @@ class App extends Component {
 
           {/* Main */}
           <div>
+            <Route 
+              path="/new-folder"
+              component={NewFolder} 
+            />
             <Route
               path="/folder/:folderId"
               component={NoteListMain}
+            />
+            <Route
+              path='/new-note'
+              component={NewNote}
             />
             <Route
               path='/notes/:noteId'
