@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './NoteListMain.css';
 import NoteCardInfo from '../NoteCardInfo/NoteCardInfo';
 import NoteContext from '../NoteContext';
@@ -54,7 +55,9 @@ class NoteListMain extends Component {
                 ;
             })}
           </ul>
-          <button>New Note</button>
+          <Link to={"/new-note"}>
+            <button>New Note</button>
+          </Link>
       </div>
     )
   }

@@ -13,7 +13,7 @@ import NoteContext from './NoteContext';
 import NoteListMain from './NoteListMain/NoteListMain';
 import NoteListSidebar from './NoteListSidebar/NoteListSidebar';
 import NotePageMain from './NotePageMain/NotePageMain';
-import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
+import NotePageBoundary from './NotePageMain/NotePageBoundary';
 import NewFolder from './NewFolder/NewFolder';
 import NewNote from './NewNote/NewNote';
 
@@ -58,14 +58,13 @@ class App extends Component {
     //     console.log(data)
     //   })
 
-    handleDeleteNote = (noteId) => {
+    handleDeleteNote = (noteId) => {      
       this.setState({
-        notes: this.state.notes.filter(note => note.noteId !== noteId)
+        notes: this.state.notes.filter(note => note.id !== noteId)
       })
     }
 
   render() {
-
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
@@ -86,9 +85,9 @@ class App extends Component {
               path="/folder/:folderId"
               component={NoteListSidebar}
             />
-            <Route
+            {/* <Route
               path='/notes/:noteId'
-              component={NotePageSidebar} />
+              component={NotePageSidebar} /> */}
             <Route 
               exact path="/"
               component={NoteListSidebar} 
@@ -113,7 +112,13 @@ class App extends Component {
             />
             <Route
               path='/notes/:noteId'
-              component={NotePageMain}
+              render={(props) => {
+                return (
+                  <NotePageBoundary>
+                    <NotePageMain {...props}/>
+                  </NotePageBoundary>
+                )
+              }}
             />  
             <Route
               exact path="/"

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class NewFolder extends React.Component {
 
 	render() {
@@ -11,6 +12,7 @@ class NewFolder extends React.Component {
 					<div>
 						<input type="text"></input>
 					</div>
+
 						<button type="submit">Create Folder</button>
 					<form>
 					</form>

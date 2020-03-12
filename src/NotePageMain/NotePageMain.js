@@ -10,8 +10,7 @@ class NotePageMain extends Component {
     
     const selectedNote = this.context.notes.find(
       note => note.id === this.props.match.params.noteId
-      )
-
+    )
 
     return(
       <>
