@@ -8,10 +8,11 @@ class NewFolder extends React.Component {
 				<section>
 					<h2>Create a Folder</h2>
 						<label for="folder-name-field">Folder Name:</label>
+					<div>
 						<input type="text"></input>
+					</div>
 						<button type="submit">Create Folder</button>
 					<form>
-
 					</form>
 				</section>
 			</>

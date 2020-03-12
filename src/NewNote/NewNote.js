@@ -1,6 +1,10 @@
 import React from 'react';
+import NoteContext from '../NoteContext';
+
 
 class NewNote extends React.Component {
+
+	static contextType = NoteContext;
 
 	render() {
 		return (
@@ -8,12 +12,25 @@ class NewNote extends React.Component {
 				<section>
 					<h2>Create a Note</h2>
 					<form>
-						<label for="note-name-field">Name</label>
-						<input type="text"></input>
-						<label for="content-name-field">Note Content</label>
-						<input type="text"></input>
-						<label for="folder-dropdown-field">Folder</label>
-						<input type="text"></input>
+						<div>
+							<label for="note-name-field">Name</label>
+							<input type="text"></input>
+						</div>
+						<div>
+							<label for="content-name-field">Note Content</label>
+							<textarea type="text"></textarea>
+						</div>
+						<div>
+							<label for="folder-dropdown-field">Folder</label>
+							<select name="note-folder-id">
+								<option value={null}>Select a folder</option>
+								{this.context.folders.map(folder => 
+									<option key={folder.id} value={folder.id}>
+										{folder.name}
+									</option>
+								)}
+							</select>
+						</div>
 						<button type="submit">Add Note</button>
 					</form>
 				</section>

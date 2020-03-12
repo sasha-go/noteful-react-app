@@ -98,18 +98,18 @@ class App extends Component {
           
 
           {/* Main */}
-          <div>
+          <div className="main-route">
             <Route 
               path="/new-folder"
               component={NewFolder} 
             />
             <Route
-              path="/folder/:folderId"
-              component={NoteListMain}
-            />
-            <Route
               path='/new-note'
               component={NewNote}
+            />
+            <Route
+              path="/folder/:folderId"
+              component={NoteListMain}
             />
             <Route
               path='/notes/:noteId'
