@@ -1,27 +1,57 @@
 import React from 'react';
 import NoteContext from '../NoteContext';
+import config from '../config';
 
 
 class NewNote extends React.Component {
 
 	static contextType = NoteContext;
 
+	handleSubmit = (event) => {
+		event.preventDefault();
+		const note = {
+			name: event.target['note-name-field'].value,
+			content: event.target['content-name-field'].value,
+			folder: event.target['note-folder-id'].value,
+			modified: new Date(),
+		}
+		fetch(`${config.API_ENDPOINT}/notes`, {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify(note)
+		})
+		.then(response => {
+			if(!response.ok)
+				return response.json().then(event => Promise.reject(event))
+				return response.json();
+		})
+		.then(note => {
+			this.context.newNote(note);
+			this.props.history.push(`/folder/${note.folderId}`)
+		})
+		.catch(error => {
+			console.error(error);
+		})
+	}
+
 	render() {
 		return (
 			<>
 				<section>
 					<h2>Create a Note</h2>
-					<form>
+					<form onSubmit={this.handleSubmit}> 
 						<div>
-							<label for="note-name-field">Name</label>
-							<input type="text"></input>
+							<label htmlFor="note-name-field">Name</label>
+							<input type="text" name="note-name-field"></input>
 						</div>
 						<div>
-							<label for="content-name-field">Note Content</label>
-							<textarea type="text"></textarea>
+							<label htmlFor="content-name-field">Note Content</label>
+							<textarea type="text" name="content-name-field"></textarea>
 						</div>
 						<div>
-							<label for="folder-dropdown-field">Folder</label>
+							<label htmlFor="folder-dropdown-field">Folder</label>
 							<select name="note-folder-id">
 								<option value={null}>Select a folder</option>
 								{this.context.folders.map(folder => 

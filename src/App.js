@@ -13,6 +13,7 @@ import NoteContext from './NoteContext';
 import NoteListMain from './NoteListMain/NoteListMain';
 import NoteListSidebar from './NoteListSidebar/NoteListSidebar';
 import NotePageMain from './NotePageMain/NotePageMain';
+import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
 import NotePageBoundary from './NotePageMain/NotePageBoundary';
 import NewFolder from './NewFolder/NewFolder';
 import NewNote from './NewNote/NewNote';
@@ -46,17 +47,18 @@ class App extends Component {
           console.error({error});
       });
   }
-    // fetch(config.API_ENDPOINT)
-    //   .then(response => {
-    //     if(!response.ok) {
-    //       return response.json().then(e => Promise.reject(e))
-    //     }
-    //     return response;
-    //   })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log(data)
-    //   })
+   
+    handleNewFolder = (folder) => {
+      this.setState({
+        folders: [...this.state.folders, folder]
+      })
+    }
+
+    handleNewNote = (note) =>{
+      this.setState({
+        notes: [...this.state.notes, note]
+      })
+    }
 
     handleDeleteNote = (noteId) => {      
       this.setState({
@@ -68,7 +70,9 @@ class App extends Component {
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
-      deleteNote: this.handleDeleteNote
+      deleteNote: this.handleDeleteNote,
+      newFolder: this.handleNewFolder,
+      newNote: this.handleNewNote
     }
 
 
@@ -85,9 +89,9 @@ class App extends Component {
               path="/folder/:folderId"
               component={NoteListSidebar}
             />
-            {/* <Route
+            <Route
               path='/notes/:noteId'
-              component={NotePageSidebar} /> */}
+              component={NotePageSidebar} />
             <Route 
               exact path="/"
               component={NoteListSidebar} 
