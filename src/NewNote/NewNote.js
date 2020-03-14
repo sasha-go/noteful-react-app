@@ -9,10 +9,10 @@ class NewNote extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		const note = {
+		const newNote = {
 			name: event.target['note-name-field'].value,
 			content: event.target['content-name-field'].value,
-			folder: event.target['note-folder-id'].value,
+			folderId: event.target['note-folder-id'].value,
 			modified: new Date(),
 		}
 		fetch(`${config.API_ENDPOINT}/notes`, {
@@ -20,7 +20,7 @@ class NewNote extends React.Component {
 			headers: {
 				'content-type': 'application/json'
 			},
-			body: JSON.stringify(note)
+			body: JSON.stringify(newNote)
 		})
 		.then(response => {
 			if(!response.ok)
