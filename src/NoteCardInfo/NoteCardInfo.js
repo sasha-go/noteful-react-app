@@ -29,6 +29,8 @@ class NoteCardInfo extends Component {
   handleClickDelete = (event) => {
     event.preventDefault();
     const noteId = this.props.id;
+    console.log(noteId);
+
     
     fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: 'DELETE',
@@ -45,8 +47,9 @@ class NoteCardInfo extends Component {
         this.context.deleteNote(noteId)
       })
       .catch(error => {
-      console.log({error})
+      console.error({error})
       })
+
   }
 
   render() {
@@ -55,7 +58,6 @@ class NoteCardInfo extends Component {
 
     return (
       <>
-        {/* Why isn't context working here? */}
         <Link to={`/notes/${this.props.id}`} className="note-card-title">{this.props.name}</Link>
         <div className="NoteCardInfo">
           <p>Modified on {modified}</p>

@@ -51,20 +51,20 @@ class App extends Component {
     handleNewFolder = (folder) => {
       this.setState({
         folders: [...this.state.folders, folder]
-      })
-    }
+      });
+    };
 
     handleNewNote = (note) =>{
       this.setState({
         notes: [...this.state.notes, note]
-      })
-    }
+      });
+    };
 
     handleDeleteNote = (noteId) => {      
       this.setState({
         notes: this.state.notes.filter(note => note.id !== noteId)
-      })
-    }
+      });
+    };
 
   render() {
     const contextValue = {
